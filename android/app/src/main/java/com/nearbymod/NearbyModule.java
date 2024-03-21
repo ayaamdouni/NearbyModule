@@ -183,11 +183,12 @@ public class NearbyModule extends ReactContextBaseJavaModule {
         
                         @Override
                         public void onConnectionResult(String endpointId, ConnectionResolution result) {
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
                             switch (result.getStatus().getStatusCode()) {
                                 case ConnectionsStatusCodes.STATUS_OK:
                                     // We're connected! Can now start sending and receiving data.
-                                    Toast.makeText(reactContext, "Request Accepted !" + LocalTime.now().toString() , Toast.LENGTH_SHORT).show();
-                                    Log.d("NearbyModule", "Connected to endpoint: " + endpointId + LocalTime.now().toString());
+                                     Toast.makeText(reactContext, "Request Accepted !" + LocalTime.now().format(formatter), Toast.LENGTH_SHORT).show();
+                                     Log.d("NearbyModule", "Connected to endpoint: " + endpointId + " at " + LocalTime.now().format(formatter));
                                     //SENDING DATA BETWEEN DEVICES
                                     //Payload bytesPayload = Payload.fromBytes(new byte[] {0xa, 0xb, 0xc, 0xd});
                                     // Nearby.getConnectionsClient(reactContext).sendPayload(endpointId, bytesPayload);
