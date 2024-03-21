@@ -192,6 +192,9 @@ public class NearbyModule extends ReactContextBaseJavaModule {
                                     //SENDING DATA BETWEEN DEVICES
                                     //Payload bytesPayload = Payload.fromBytes(new byte[] {0xa, 0xb, 0xc, 0xd});
                                     // Nearby.getConnectionsClient(reactContext).sendPayload(endpointId, bytesPayload);
+                                    if (discoveryCallback != null) {
+                                    discoveryCallback.invoke(currentTimeFound.format(formatter), currentTimeAcceptConnection.format(formatter));
+                                    }
                                     break;
                                 case ConnectionsStatusCodes.STATUS_CONNECTION_REJECTED:
                                     // The connection was rejected by one or both sides.
